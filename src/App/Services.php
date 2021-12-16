@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+// use App\Entity\Employee;
+use App\Service\Employee;
 use App\Service\Note;
 use App\Service\Task\TaskService;
 use App\Service\User;
@@ -54,5 +56,25 @@ $container['update_note_service'] = static fn (ContainerInterface $container): N
 
 $container['delete_note_service'] = static fn (ContainerInterface $container): Note\Delete => new Note\Delete(
     $container->get('note_repository'),
+    $container->get('redis_service')
+);
+
+$container['find_employee_service'] = static fn (ContainerInterface $container): Employee\Find => new Employee\Find(
+    $container->get('employee_repository'),
+    $container->get('redis_service')
+);
+
+$container['create_employee_service'] = static fn (ContainerInterface $container): Employee\Create => new Employee\Create(
+    $container->get('employee_repository'),
+    $container->get('redis_service')
+);
+
+$container['update_employee_service'] = static fn (ContainerInterface $container): Employee\Update => new Employee\Update(
+    $container->get('employee_repository'),
+    $container->get('redis_service')
+);
+
+$container['delete_employee_service'] = static fn (ContainerInterface $container): Employee\Delete => new Employee\Delete(
+    $container->get('employee_repository'),
     $container->get('redis_service')
 );

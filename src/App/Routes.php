@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Controller\Note;
+use App\Controller\Employee;
 use App\Controller\Task;
 use App\Controller\User;
 use App\Middleware\Auth;
@@ -36,5 +37,12 @@ $app->group('/api/v1', function () use ($app): void {
         $app->get('/{id}', Note\GetOne::class);
         $app->put('/{id}', Note\Update::class);
         $app->delete('/{id}', Note\Delete::class);
+    });
+    $app->group('/employees', function () use ($app): void {
+        $app->get('', Employee\GetAll::class);
+        $app->post('', Employee\Create::class);
+        $app->get('/{id}', Employee\GetOne::class);
+        $app->put('/{id}', Employee\Update::class);
+        $app->delete('/{id}', Employee\Delete::class);
     });
 });
