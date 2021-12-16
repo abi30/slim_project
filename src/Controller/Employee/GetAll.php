@@ -20,7 +20,7 @@ final class GetAll extends Base
         $possion = $request->getQueryParam('possion', null);
 
         $employees = $this->getServiceFindEmployee()
-            ->getEmployeesByPage((int) $page, (int) $perPage,$name,$age,$possion);
+            ->getEmployeesByPage((int) $page, (int) $perPage,$name,(int)$age,$possion);
 
         return $this->jsonResponse($response, 'success', $employees, 200);
     }

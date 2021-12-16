@@ -24,10 +24,10 @@ final class EmployeeRepository extends BaseRepository
 
     public function getEmployees(): array
     {
-        $query = 'SELECT * FROM `employees` ORDER BY `id`';
+        $query = "SELECT * FROM `employees` ORDER BY `id`";
         $statement = $this->database->prepare($query);
-        $statement->execute();
 
+        $statement->execute();
         return (array) $statement->fetchAll();
     }
 
@@ -37,6 +37,7 @@ final class EmployeeRepository extends BaseRepository
             SELECT *
             FROM `employees`
             WHERE `name` LIKE CONCAT('%', :name, '%')
+            AND `age` LIKE CONCAT('%', :age, '%')
             AND `possion` LIKE CONCAT('%', :possion, '%')
             ORDER BY `id`
         ";
@@ -51,14 +52,15 @@ final class EmployeeRepository extends BaseRepository
     ): array {
         $params = [
             'name' => is_null($name) ? '' : $name,
-            'age' => is_null($age) ? '' : $age,
+            'age' => is_null($age) ? 0 : $age,
             'possion' => is_null($possion) ? '' : $possion,
         ];
         $query = $this->getQueryEmployeesByPage();
         $query = $this->getQueryEmployeesByPage();
         $statement = $this->database->prepare($query);
         $statement->bindParam('name', $params['name']);
-        $statement->bindParam('description', $params['description']);
+        $statement->bindParam('age', $params['age']);
+        $statement->bindParam('possion', $params['possion']);
         $statement->execute();
         $total = $statement->rowCount();
 
@@ -77,7 +79,7 @@ final class EmployeeRepository extends BaseRepository
             INSERT INTO `employees`
                 (`name`, `age`, `possion`)
             VALUES
-                (:name, :age,:possion)
+                (:name, :age, :possion)
         ';
         $statement = $this->database->prepare($query);
         $name = $employee->getName();
@@ -95,7 +97,7 @@ final class EmployeeRepository extends BaseRepository
     {
         $query = '
             UPDATE `employees`
-            SET `name` = :name, , `age` = :age `possion` = :possion
+            SET `name` = :name, `age` = :age, `possion` = :possion
             WHERE `id` = :id
         ';
         $statement = $this->database->prepare($query);

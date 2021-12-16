@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2021 at 04:42 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.26
+-- Generation Time: Dec 17, 2021 at 12:26 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,14 +41,9 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `name`, `age`, `possion`, `date_created`, `date_modif`) VALUES
-(2, 'mustofa', 21, 'sr.dv', '2021-12-16 12:53:35', '2021-12-16 12:53:35'),
-(3, 'devid', 34, 'Architekt ', '2021-12-16 12:53:35', '2021-12-16 12:53:35'),
-(4, 'alabin', 30, 'human Ressource', '2021-12-16 12:53:35', '2021-12-16 12:53:35'),
-(5, 'abdulla', 32, 'junior dv', '0000-00-00 00:00:00', '2021-12-16 12:53:45'),
-(6, 'mustofa', 21, 'sr.dv', '2021-12-16 12:53:45', '2021-12-16 12:53:45'),
-(7, 'devid', 34, 'Architekt ', '2021-12-16 12:53:45', '2021-12-16 12:53:45'),
-(8, 'alabin', 30, 'human Ressource', '2021-12-16 12:53:45', '2021-12-16 12:53:45'),
-(9, 'New Raib', 32, 'Magical.', '2021-12-16 15:36:07', '2021-12-16 15:36:07');
+(9, 'New Raib', 32, 'Magical.', '2021-12-16 15:36:07', '2021-12-16 15:36:07'),
+(10, 'mahabub', 34, 'Magic Goal...', '2021-12-16 22:24:53', '2021-12-16 22:24:53'),
+(11, 'sabiha', 32, 'doctor', '2021-12-16 22:59:44', '2021-12-16 22:59:44');
 
 -- --------------------------------------------------------
 
@@ -178,7 +173,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `notes`

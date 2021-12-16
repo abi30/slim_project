@@ -18,6 +18,7 @@ final class DefaultController extends BaseController
         $endpoints = [
             'tasks' => $url . '/api/v1/tasks',
             'users' => $url . '/api/v1/users',
+            'employees' => $url . '/api/v1/employees',
             'notes' => $url . '/api/v1/notes',
             'docs' => $url . '/docs/index.html',
             'status' => $url . '/status',
@@ -49,11 +50,13 @@ final class DefaultController extends BaseController
     {
         $taskService = $this->container->get('task_service');
         $userService = $this->container->get('find_user_service');
+        $employeesService = $this->container->get('find_employee_service');
         $noteService = $this->container->get('find_note_service');
 
         return [
             'tasks' => count($taskService->getAllTasks()),
             'users' => count($userService->getAll()),
+            'employees' => count($noteService->getAll()),
             'notes' => count($noteService->getAll()),
         ];
     }
