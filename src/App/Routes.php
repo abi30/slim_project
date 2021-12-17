@@ -15,6 +15,7 @@ $app->get('/status', 'App\Controller\DefaultController:getStatus');
 $app->post('/login', \App\Controller\User\Login::class);
 
 $app->group('/api/v1', function () use ($app): void {
+    
     $app->group('/tasks', function () use ($app): void {
         $app->get('', Task\GetAll::class);
         $app->post('', Task\Create::class);
@@ -44,5 +45,5 @@ $app->group('/api/v1', function () use ($app): void {
         $app->get('/{id}', Employee\GetOne::class);
         $app->put('/{id}', Employee\Update::class);
         $app->delete('/{id}', Employee\Delete::class);
-    });
+    })->add(new Auth());
 });

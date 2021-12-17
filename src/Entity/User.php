@@ -17,6 +17,7 @@ final class User
     public function toJson(): object
     {
         return json_decode((string) json_encode(get_object_vars($this)), false);
+        // return json_encode((string) json_decode(get_object_vars($this)), false);
     }
 
     public function getId(): int
