@@ -18,8 +18,7 @@ final class GetAll extends Base
         $name = $request->getQueryParam('name', null);
         $description = $request->getQueryParam('description', null);
 
-        $notes = $this->getServiceFindNote()
-            ->getNotesByPage((int) $page, (int) $perPage, $name, $description);
+        $notes = $this->getServiceFindNote()->getNotesByPage((int) $page, (int) $perPage, $name, $description);
 
         return $this->jsonResponse($response, 'success', $notes, 200);
     }

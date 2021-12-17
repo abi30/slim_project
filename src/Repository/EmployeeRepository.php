@@ -26,8 +26,8 @@ final class EmployeeRepository extends BaseRepository
     {
         $query = "SELECT * FROM `employees` ORDER BY `id`";
         $statement = $this->database->prepare($query);
-
         $statement->execute();
+
         return (array) $statement->fetchAll();
     }
 
@@ -36,9 +36,10 @@ final class EmployeeRepository extends BaseRepository
         return "
             SELECT *
             FROM `employees`
-            WHERE `name` LIKE CONCAT('%', :name, '%')
-            AND `age` LIKE CONCAT('%', :age, '%')
-            AND `possion` LIKE CONCAT('%', :possion, '%')
+            WHERE 
+            `name` LIKE CONCAT('%', :name , '%')
+            AND `age` LIKE CONCAT('%', :age , '%')
+            AND `possion` LIKE CONCAT('%', :possion , '%')
             ORDER BY `id`
         ";
     }
@@ -47,20 +48,20 @@ final class EmployeeRepository extends BaseRepository
         int $page,
         int $perPage,
         ?string $name,
-        ?int $age,
+        ?string $age,
         ?string $possion
     ): array {
         $params = [
             'name' => is_null($name) ? '' : $name,
-            'age' => is_null($age) ? 0 : $age,
+            'age' => is_null($age) ? '' : $age,
             'possion' => is_null($possion) ? '' : $possion,
         ];
-        $query = $this->getQueryEmployeesByPage();
+        
         $query = $this->getQueryEmployeesByPage();
         $statement = $this->database->prepare($query);
-        $statement->bindParam('name', $params['name']);
-        $statement->bindParam('age', $params['age']);
-        $statement->bindParam('possion', $params['possion']);
+        $statement->bindParam(':name', $params['name']);
+        $statement->bindParam(':age', $params['age']);
+        $statement->bindParam(':possion', $params['possion']);
         $statement->execute();
         $total = $statement->rowCount();
 
@@ -95,11 +96,11 @@ final class EmployeeRepository extends BaseRepository
 
     public function updateEmployee(Employee $employee): Employee
     {
-        $query = '
+        $query = "
             UPDATE `employees`
             SET `name` = :name, `age` = :age, `possion` = :possion
             WHERE `id` = :id
-        ';
+        ";
         $statement = $this->database->prepare($query);
         $id = $employee->getId();
         $name = $employee->getName();
@@ -107,7 +108,8 @@ final class EmployeeRepository extends BaseRepository
         $desc = $employee->getPossion();
         $statement->bindParam(':id', $id);
         $statement->bindParam(':name', $name);
-        $statement->bindParam(':description', $desc);
+        $statement->bindParam(':age', $age);
+        $statement->bindParam(':possion', $desc);
         $statement->execute();
 
         return $this->checkAndGetEmployee((int) $id);
