@@ -28,7 +28,9 @@ final class EmployeeRepository extends BaseRepository
         $statement = $this->database->prepare($query);
         $statement->execute();
 
+
         return (array) $statement->fetchAll();
+        
     }
 
     public function getQueryEmployeesByPage(): string
@@ -48,12 +50,12 @@ final class EmployeeRepository extends BaseRepository
         int $page,
         int $perPage,
         ?string $name,
-        ?string $age,
+        ?int $age,
         ?string $possion
     ): array {
         $params = [
             'name' => is_null($name) ? '' : $name,
-            'age' => is_null($age) ? '' : $age,
+            'age' => is_null($age) ? '': $age,
             'possion' => is_null($possion) ? '' : $possion,
         ];
         
@@ -96,23 +98,25 @@ final class EmployeeRepository extends BaseRepository
 
     public function updateEmployee(Employee $employee): Employee
     {
-        $query = "
+        $query = '
             UPDATE `employees`
             SET `name` = :name, `age` = :age, `possion` = :possion
             WHERE `id` = :id
-        ";
+        ';
         $statement = $this->database->prepare($query);
         $id = $employee->getId();
         $name = $employee->getName();
-        $desc = $employee->getAge();
-        $desc = $employee->getPossion();
+        $age= $employee->getAge();
+        $pos = $employee->getPossion();
         $statement->bindParam(':id', $id);
         $statement->bindParam(':name', $name);
         $statement->bindParam(':age', $age);
-        $statement->bindParam(':possion', $desc);
+        $statement->bindParam(':possion', $pos);
         $statement->execute();
+     
 
         return $this->checkAndGetEmployee((int) $id);
+        
     }
 
     public function deleteEmployee(int $employeeId): void

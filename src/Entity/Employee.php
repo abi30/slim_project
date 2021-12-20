@@ -10,8 +10,7 @@ final class Employee
 
     private string $name;
 
-    private int $age;
-
+    private ?int $age;
 
     private ?string $possion;
 
@@ -37,12 +36,12 @@ final class Employee
 
         return $this;
     }
-    public function getAge(): int
+    public function getAge(): ?int
     {
         return $this->age;
     }
 
-    public function updateAge(int $age): self
+    public function updateAge(?int $age): self
     {
         $this->age = $age;
 

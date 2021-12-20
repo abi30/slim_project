@@ -45,5 +45,5 @@ $app->group('/api/v1', function () use ($app): void {
         $app->get('/{id}', Employee\GetOne::class);
         $app->put('/{id}', Employee\Update::class);
         $app->delete('/{id}', Employee\Delete::class);
-    })->add(new Auth());
+    });
 });

@@ -15,7 +15,10 @@ final class Update extends Base
         if (isset($data->name)) {
             $employee->updateName(self::validateEmployeeName($data->name));
         }
-        if (isset($data->description)) {
+        if (isset($data->age)) {
+            $employee->updateAge($data->age);
+        }
+        if (isset($data->possion)) {
             $employee->updatePossion($data->possion);
         }
         /** @var Employee $employees */

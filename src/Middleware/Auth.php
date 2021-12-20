@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Serve\RequestHandlerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Route;
