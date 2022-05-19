@@ -1,0 +1,2 @@
+<a href="https://connect.squareup.com/oauth2/authorize?client_id=sq0idp-gbQhcOCpmb2X4W1588Ky7A">Authorize App</a>
+<a href="https://auth.dionera.com/oauth2/authorize?client_id=805b2cf4-f4c7-441c-a45c-17f6a719eeed">Ameime App</a>
