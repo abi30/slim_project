@@ -1,6 +1,7 @@
 <?php
 
 $token_url = "https://auth.dionera.com/oauth2/token";
+$auth_url =  "https: //auth.dionera.com/oauth2/auth";
 
 $test_api_url = "https://www.maklerinfo.biz/";
 
@@ -18,10 +19,10 @@ echo $resource;
 //        will return access_token
 function getAccessToken()
 {
-    global $token_url, $client_id, $client_secret;
+    global $auth_url, $token_url, $client_id, $client_secret;
 
     $content = "grant_type=client_credentials&scope=ameise/mitarbeiterwebservice";
-    $authorization = base64_encode("$client_id:$client_secret");
+    $authorization =base64_encode("$client_id:$client_secret");
 
     $header = array("Authorization: Basic {$authorization}", "Content-Type: application/x-www-form-urlencoded");
 
